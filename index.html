@@ -5,30 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alter — Event Styling & Decor</title>
 
+  <!-- Google Fonts: Playfair Display for unified editorial serif typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
   <style>
     /* =========================================================
        IMAGE PATHS & EASY-TO-EDIT VARIABLES
-       Change your image filenames in the single lines below!
+       Change your 3 local filenames in the single lines below!
     ========================================================= */
     :root {
-      /* Easily edit your 3 image file paths right here: */
+      /* Single-line image path definitions */
       --logo-image: url('Asset 9.png');
       --hero-image: url('Asset 10.png');
       --cta-image:  url('Asset 11.png');
 
       /* Brand Theme Colors */
       --purple: #741c68;
-      --purple-dark: #53104d;
+      --purple-dark: #3a0633;
+      --purple-deep: #250221;
       --cream: #eee3d7;
-      --cream-light: #f5eee7;
-      --cream-card: rgba(248, 242, 235, 0.85);
-      --text: #342b31;
+      --cream-light: #f6efe8;
+      --cream-card: rgba(248, 242, 235, 0.9);
+      --text: #292127;
       --text-muted: #50464d;
       --line: rgba(116, 28, 104, 0.35);
 
-      /* Typography */
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: Arial, Helvetica, sans-serif;
+      /* Global Unified Serif Font */
+      --font-serif: 'Playfair Display', Georgia, "Times New Roman", serif;
     }
 
     /* =========================================================
@@ -47,9 +52,15 @@
     body {
       background: var(--cream);
       color: var(--text);
-      font-family: var(--sans);
+      font-family: var(--font-serif);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* Ensure uniform typography font across all native elements */
+    h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label {
+      font-family: var(--font-serif);
     }
 
     a {
@@ -59,6 +70,7 @@
 
     button {
       font: inherit;
+      cursor: pointer;
     }
 
     /* =========================================================
@@ -70,43 +82,42 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 68px;
+      height: 72px;
       background: var(--purple);
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 42px;
+      padding: 0 48px;
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .navbar.scrolled {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
     }
 
     .brand-logo {
-      height: 40px;
-      width: 180px;
+      height: 44px;
+      width: 190px;
       background-image: var(--logo-image);
       background-size: contain;
       background-position: left center;
       background-repeat: no-repeat;
       display: block;
-      /* Inverts color for dark header if image is dark PNG */
       filter: brightness(0) invert(1);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 52px;
-      font-family: var(--serif);
-      font-size: 13px;
+      gap: 48px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
 
     .nav-links a {
       position: relative;
-      opacity: 0.92;
+      opacity: 0.9;
       transition: opacity 0.25s ease;
     }
 
@@ -134,18 +145,17 @@
       border: 0;
       background: transparent;
       color: white;
-      cursor: pointer;
-      font-size: 26px;
+      font-size: 28px;
     }
 
     /* =========================================================
        HERO SECTION
     ========================================================= */
     .hero {
-      min-height: 580px;
-      padding-top: 68px;
+      min-height: 600px;
+      padding-top: 72px;
       display: grid;
-      grid-template-columns: 44% 56%;
+      grid-template-columns: 46% 54%;
     }
 
     .hero-content {
@@ -153,33 +163,31 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 70px 7vw;
+      padding: 80px 7vw;
     }
 
     .hero-title {
       color: var(--purple);
-      font-family: var(--serif);
       font-size: clamp(48px, 5vw, 76px);
       line-height: 0.92;
       font-weight: 500;
       letter-spacing: -2px;
-      max-width: 500px;
+      max-width: 520px;
     }
 
     .hero-button {
-      margin-top: 42px;
-      width: 260px;
-      height: 52px;
+      margin-top: 48px;
+      width: 270px;
+      height: 54px;
       border: 0;
       background: var(--purple);
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      cursor: pointer;
-      font-family: var(--serif);
-      font-size: 14px;
+      padding: 0 24px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
       transition: background 0.3s ease, transform 0.3s ease;
     }
 
@@ -189,14 +197,12 @@
     }
 
     .hero-button span.arrow {
-      font-size: 20px;
-      font-family: var(--sans);
-      font-weight: 300;
+      font-size: 22px;
       transition: transform 0.3s ease;
     }
 
     .hero-button:hover span.arrow {
-      transform: translateX(4px);
+      transform: translateX(5px);
     }
 
     .hero-art {
@@ -205,7 +211,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 480px;
+      min-height: 520px;
     }
 
     /* =========================================================
@@ -213,16 +219,15 @@
     ========================================================= */
     .about {
       background: var(--cream);
-      padding: 85px 7vw 90px;
+      padding: 95px 7vw 100px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 100px;
+      gap: 90px;
     }
 
     .section-label {
       color: var(--purple);
-      font-family: var(--serif);
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 25px;
       font-weight: 500;
     }
@@ -230,17 +235,17 @@
     .about-text {
       max-width: 560px;
       color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 17px;
+      line-height: 1.6;
     }
 
     .about-statement {
       color: var(--purple);
-      font-family: var(--serif);
-      font-size: clamp(30px, 3.2vw, 44px);
+      font-size: clamp(32px, 3.2vw, 46px);
       line-height: 1.12;
-      max-width: 440px;
+      max-width: 460px;
       padding-top: 45px;
+      font-style: italic;
     }
 
     /* =========================================================
@@ -248,10 +253,10 @@
     ========================================================= */
     .values {
       background: var(--cream-light);
-      min-height: 235px;
+      min-height: 240px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      padding: 58px 7vw;
+      padding: 60px 7vw;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
     }
@@ -261,7 +266,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 0 45px;
+      padding: 0 40px;
       position: relative;
     }
 
@@ -276,24 +281,24 @@
     }
 
     .value-icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       margin-bottom: 16px;
       color: var(--purple);
     }
 
     .value-title {
       color: var(--purple);
-      font-family: var(--serif);
-      font-size: 16px;
-      letter-spacing: 1px;
+      font-size: 17px;
+      letter-spacing: 1.5px;
       margin-bottom: 12px;
+      font-weight: 600;
     }
 
     .value-description {
-      max-width: 200px;
-      font-size: 14px;
-      line-height: 1.4;
+      max-width: 220px;
+      font-size: 15px;
+      line-height: 1.45;
       color: #393137;
     }
 
@@ -302,65 +307,226 @@
     ========================================================= */
     .services {
       background: #e9ddd0;
-      padding: 75px 7vw 110px;
+      padding: 85px 7vw 110px;
     }
 
     .services-heading {
       color: var(--purple);
-      font-family: var(--serif);
       text-align: center;
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 500;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 50px;
+      gap: 45px;
     }
 
     .service-card {
       background: var(--cream-card);
-      min-height: 290px;
-      padding: 60px 32px 35px;
+      min-height: 310px;
+      padding: 65px 36px 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+      border: 1px solid rgba(116, 28, 104, 0.08);
     }
 
     .service-card:hover {
       transform: translateY(-8px);
       background: #fdfaf7;
-      box-shadow: 0 12px 30px rgba(116, 28, 104, 0.08);
+      box-shadow: 0 16px 36px rgba(116, 28, 104, 0.1);
     }
 
     .service-title {
       color: var(--purple);
-      font-family: var(--serif);
-      font-size: 22px;
-      margin-bottom: 20px;
+      font-size: 24px;
+      margin-bottom: 18px;
+      font-weight: 600;
     }
 
     .service-description {
       color: var(--text-muted);
       font-size: 15px;
-      line-height: 1.45;
-      max-width: 260px;
+      line-height: 1.5;
     }
 
     /* =========================================================
-       FEATURE CTA SECTION
+       OUR PROCESS - CSS STICKY SCROLLTELLING SECTION
+    ========================================================= */
+    .process-scroll-container {
+      position: relative;
+      background: #e1d3c5;
+      /* Extended vertical height to allow a long, smooth scroll sequence */
+      min-height: 380vh;
+      border-top: 1px solid var(--line);
+    }
+
+    .process-sticky-stage {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 90px);
+      max-height: 680px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 7vw;
+      overflow: hidden;
+    }
+
+    .process-header-bar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-section-title {
+      color: var(--purple);
+      font-size: 34px;
+      font-weight: 500;
+    }
+
+    .process-scroll-hint {
+      color: var(--purple);
+      font-size: 14px;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .process-card-display {
+      background: var(--cream-light);
+      border: 1px solid var(--line);
+      padding: 48px 56px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 50px;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(83, 16, 77, 0.08);
+      position: relative;
+    }
+
+    .process-badge-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .process-badge-number {
+      font-size: clamp(80px, 9vw, 110px);
+      line-height: 0.85;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: -3px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .process-phase-tag {
+      margin-top: 18px;
+      background: var(--purple);
+      color: var(--cream);
+      padding: 6px 16px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .process-info-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .process-step-title {
+      color: var(--purple);
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .process-step-desc {
+      color: var(--text-muted);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 24px;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Scroll progress bar & dots indicator */
+    .process-progress-wrapper {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .process-progress-bar-bg {
+      flex: 1;
+      height: 4px;
+      background: rgba(116, 28, 104, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-progress-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 11.11%;
+      background: var(--purple);
+      transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .process-dots {
+      display: flex;
+      gap: 10px;
+    }
+
+    .process-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--purple);
+      background: transparent;
+      color: var(--purple);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .process-dot.active {
+      background: var(--purple);
+      color: white;
+      transform: scale(1.15);
+    }
+
+    /* =========================================================
+       FEATURE CTA STRIP
     ========================================================= */
     .feature {
       display: grid;
       grid-template-columns: 50% 50%;
-      min-height: 340px;
+      min-height: 360px;
     }
 
     .feature-image {
-      min-height: 340px;
+      min-height: 360px;
       background-image: var(--cta-image);
       background-size: cover;
       background-position: center;
@@ -372,30 +538,147 @@
       color: var(--cream);
       display: flex;
       align-items: center;
-      padding: 50px 11%;
+      padding: 60px 11%;
     }
 
     .feature-title {
-      font-family: var(--serif);
       font-weight: 400;
       font-size: clamp(42px, 4.2vw, 64px);
       line-height: 0.92;
     }
 
     /* =========================================================
+       CONTACT SECTION
+    ========================================================= */
+    .contact-section {
+      background: var(--purple-deep);
+      color: var(--cream);
+      padding: 95px 8vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      gap: 80px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-tag {
+      color: #d192cb;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .contact-block {
+      margin-bottom: 32px;
+    }
+
+    .contact-label {
+      color: #b57ba0;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .contact-value {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+      color: #f1cbf3;
+    }
+
+    .contact-form-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 50px 45px;
+    }
+
+    .form-title {
+      font-size: 28px;
+      margin-bottom: 24px;
+      color: var(--cream);
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      color: #d8b7d4;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: white;
+      padding: 14px 18px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #e5a4de;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-select option {
+      background: var(--purple-dark);
+      color: white;
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      height: 52px;
+      background: var(--cream);
+      color: var(--purple-dark);
+      border: 0;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .form-submit-btn:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
        FOOTER
     ========================================================= */
     .footer {
-      min-height: 260px;
+      min-height: 240px;
       background: var(--cream);
       display: flex;
       align-items: center;
-      padding: 65px 8vw;
+      padding: 60px 8vw;
+      border-top: 1px solid var(--line);
     }
 
     .footer-logo {
-      height: 65px;
-      width: 280px;
+      height: 68px;
+      width: 290px;
       background-image: var(--logo-image);
       background-size: contain;
       background-position: left center;
@@ -404,26 +687,12 @@
     }
 
     /* =========================================================
-       REVEAL ANIMATIONS
-    ========================================================= */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =========================================================
        MOBILE RESPONSIVENESS
     ========================================================= */
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
       .navbar {
-        height: 60px;
-        padding: 0 22px;
+        height: 64px;
+        padding: 0 24px;
       }
 
       .nav-links {
@@ -431,13 +700,12 @@
         position: absolute;
         left: 0;
         right: 0;
-        top: 60px;
+        top: 64px;
         padding: 30px;
         background: var(--purple-dark);
         flex-direction: column;
-        gap: 25px;
-        font-size: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        gap: 24px;
+        font-size: 16px;
       }
 
       .nav-links.open {
@@ -449,36 +717,31 @@
       }
 
       .hero {
-        padding-top: 60px;
+        padding-top: 64px;
         grid-template-columns: 1fr;
       }
 
       .hero-content {
-        min-height: 420px;
         padding: 60px 28px;
       }
 
       .hero-title {
-        font-size: clamp(46px, 12vw, 72px);
+        font-size: clamp(42px, 12vw, 68px);
       }
 
       .hero-art {
-        min-height: 350px;
+        min-height: 380px;
       }
 
       .about {
         grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 60px 28px 70px;
-      }
-
-      .about-statement {
-        padding-top: 10px;
+        gap: 24px;
+        padding: 60px 28px;
       }
 
       .values {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
         padding: 60px 28px;
       }
 
@@ -487,29 +750,38 @@
       }
 
       .services {
-        padding: 60px 28px 80px;
+        padding: 60px 28px;
       }
 
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+      }
+
+      .process-card-display {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 24px;
+      }
+
+      .process-badge-number {
+        font-size: 70px;
       }
 
       .feature {
         grid-template-columns: 1fr;
       }
 
-      .feature-image {
-        min-height: 300px;
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
       }
 
-      .feature-content {
-        min-height: 280px;
-        padding: 55px 32px;
+      .contact-section {
+        padding: 60px 28px;
       }
 
-      .footer {
-        padding: 55px 28px;
+      .contact-form-card {
+        padding: 32px 24px;
       }
     }
   </style>
@@ -523,7 +795,7 @@
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#catalogue">Catalogue</a>
+      <a href="#process">Our Process</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -535,14 +807,14 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-content">
-        <h1 class="hero-title reveal">
+        <h1 class="hero-title">
           Where<br>
           Spaces<br>
           Become<br>
           Experiences
         </h1>
 
-        <a href="#services" class="hero-button reveal">
+        <a href="#services" class="hero-button">
           <span>Explore Our Collection</span>
           <span class="arrow">→</span>
         </a>
@@ -553,7 +825,7 @@
     </section>
 
     <section class="about" id="about">
-      <div class="reveal">
+      <div>
         <h2 class="section-label">About Us</h2>
         <p class="about-text">
           Alter Spaces was founded on the belief that decor is
@@ -565,15 +837,15 @@
         </p>
       </div>
 
-      <div class="about-statement reveal">
+      <div class="about-statement">
         Every space holds a
         memory before it's
         made.
       </div>
     </section>
 
-    <section class="values" id="catalogue">
-      <div class="value reveal">
+    <section class="values">
+      <div class="value">
         <div class="value-icon">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M5 22L15 11H33L43 22L24 39L5 22Z"/>
@@ -585,7 +857,7 @@
         <p class="value-description">Only the finest materials, crafted to last</p>
       </div>
 
-      <div class="value reveal">
+      <div class="value">
         <div class="value-icon">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7">
             <rect x="6" y="14" width="27" height="20"/>
@@ -598,7 +870,7 @@
         <p class="value-description">Thoughtfully selected from global artisans.</p>
       </div>
 
-      <div class="value reveal">
+      <div class="value">
         <div class="value-icon">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7">
             <path d="M24 5 L28.8 18 L43 18.5 L31.8 27 L35.5 40 L24 32.5 L12.5 40 L16.2 27 L5 18.5 L19.2 18 Z"/>
@@ -610,29 +882,73 @@
     </section>
 
     <section class="services" id="services">
-      <h2 class="services-heading reveal">Our Services</h2>
+      <h2 class="services-heading">Our Services</h2>
 
       <div class="services-grid">
-        <article class="service-card reveal">
+        <article class="service-card">
           <h3 class="service-title">Corporate Events</h3>
           <p class="service-description">
             Brand launches, galas, conferences, and press dinners staged with editorial precision.
           </p>
         </article>
 
-        <article class="service-card reveal">
+        <article class="service-card">
           <h3 class="service-title">Weddings</h3>
           <p class="service-description">
             Ceremony arches, tablescapes, floral installations, and lighting design for the most personal day of your life.
           </p>
         </article>
 
-        <article class="service-card reveal">
+        <article class="service-card">
           <h3 class="service-title">Private Celebrations</h3>
           <p class="service-description">
             Birthdays, anniversaries, and intimate dinners — quietly extraordinary rooms for the people who matter.
           </p>
         </article>
+      </div>
+    </section>
+
+    <section class="process-scroll-container" id="process">
+      <div class="process-sticky-stage">
+        <div class="process-header-bar">
+          <h2 class="process-section-title">Our Process</h2>
+          <div class="process-scroll-hint">
+            <span>Scroll down to explore steps</span>
+            <span>↓</span>
+          </div>
+        </div>
+
+        <div class="process-card-display">
+          <div class="process-badge-column">
+            <div class="process-badge-number" id="processNumber">01</div>
+            <div class="process-phase-tag" id="processPhase">Phase 01</div>
+          </div>
+
+          <div class="process-info-column">
+            <h3 class="process-step-title" id="processTitle">Discovery</h3>
+            <p class="process-step-desc" id="processDesc">
+              Understanding your vision, event context, aesthetics, and core spatial requirements through initial consultation.
+            </p>
+
+            <div class="process-progress-wrapper">
+              <div class="process-progress-bar-bg">
+                <div class="process-progress-bar-fill" id="processProgressFill"></div>
+              </div>
+              
+              <div class="process-dots" id="processDots">
+                <button class="process-dot active" data-step="0">1</button>
+                <button class="process-dot" data-step="1">2</button>
+                <button class="process-dot" data-step="2">3</button>
+                <button class="process-dot" data-step="3">4</button>
+                <button class="process-dot" data-step="4">5</button>
+                <button class="process-dot" data-step="5">6</button>
+                <button class="process-dot" data-step="6">7</button>
+                <button class="process-dot" data-step="7">8</button>
+                <button class="process-dot" data-step="8">9</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -650,13 +966,75 @@
       </div>
     </section>
 
-    <footer class="footer" id="contact">
+    <section class="contact-section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-tag">Get in Touch</div>
+
+          <div class="contact-block">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Addis Ababa, Ethiopia</div>
+          </div>
+
+          <div class="contact-block">
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">
+              <a href="tel:+251923060628">+251923060628</a>
+            </div>
+          </div>
+
+          <div class="contact-block">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:helinamulatu@alter-decor.com">helinamulatu@alter-decor.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3 class="form-title">Reserve Your Consultation</h3>
+          <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will contact you shortly.');">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="your.email@domain.com" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Event Type</label>
+              <select class="form-select" required>
+                <option value="">Select Event Type</option>
+                <option value="wedding">Wedding</option>
+                <option value="corporate">Corporate Event</option>
+                <option value="private">Private Celebration</option>
+                <option value="other">Other Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" rows="4" placeholder="Tell us about your event vision..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
       <div class="footer-logo"></div>
     </footer>
   </main>
 
   <script>
-    /* Mobile Menu Toggle */
+    /* =========================================================
+       1. MOBILE MENU TOGGLE
+    ========================================================= */
     const menuButton = document.getElementById("menuButton");
     const navLinks = document.getElementById("navLinks");
 
@@ -670,7 +1048,9 @@
       });
     });
 
-    /* Sticky Header Shadow */
+    /* =========================================================
+       2. STICKY NAVBAR SHADOW ON SCROLL
+    ========================================================= */
     const navbar = document.getElementById("navbar");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 30) {
@@ -680,26 +1060,141 @@
       }
     });
 
-    /* Scroll Reveal Animations */
-    const revealElements = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
+    /* =========================================================
+       3. OUR PROCESS - STICKY SCROLLTELLING DATA & LOGIC
+    ========================================================= */
+    const processStepsData = [
+      {
+        num: "01",
+        phase: "Phase 01 — Concept",
+        title: "Discovery",
+        desc: "Understanding your vision, event goals, brand aesthetic, and spatial dynamics through collaborative consultation."
       },
-      { threshold: 0.15 }
-    );
+      {
+        num: "02",
+        phase: "Phase 01 — Concept",
+        title: "Design",
+        desc: "Creating bespoke design concepts, moodboards, custom color palettes, and structural layouts tailored to your space."
+      },
+      {
+        num: "03",
+        phase: "Phase 01 — Concept",
+        title: "Proposal",
+        desc: "Presenting comprehensive solutions, itemized quotations, and visual renders for total clarity."
+      },
+      {
+        num: "04",
+        phase: "Phase 02 — Logistics",
+        title: "Planning",
+        desc: "Scheduling timeline logistics, vendor synchronization, and item sourcing with surgical precision."
+      },
+      {
+        num: "05",
+        phase: "Phase 02 — Logistics",
+        title: "Preparation",
+        desc: "Material inspection, bespoke floral styling, custom set-piece fabrication, and quality assurance control."
+      },
+      {
+        num: "06",
+        phase: "Phase 02 — Logistics",
+        title: "Installation",
+        desc: "Professional on-site setup, structural buildout, lighting adjustment, and detailed scene placement."
+      },
+      {
+        num: "07",
+        phase: "Phase 03 — Event & Beyond",
+        title: "Event Support",
+        desc: "Operational stand-by assistance during the event to ensure atmosphere, lighting, and elements remain flawless."
+      },
+      {
+        num: "08",
+        phase: "Phase 03 — Event & Beyond",
+        title: "Dismantling",
+        desc: "Safe, rapid post-event removal and coordinated transportation leaving the venue immaculate."
+      },
+      {
+        num: "09",
+        phase: "Phase 03 — Event & Beyond",
+        title: "Maintenance",
+        desc: "Cleaning, eco-conscious salvage, component inspection, and long-term storage of bespoke inventory."
+      }
+    ];
 
-    revealElements.forEach(element => observer.observe(element));
+    const processContainer = document.getElementById("process");
+    const numEl = document.getElementById("processNumber");
+    const phaseEl = document.getElementById("processPhase");
+    const titleEl = document.getElementById("processTitle");
+    const descEl = document.getElementById("processDesc");
+    const fillEl = document.getElementById("processProgressFill");
+    const dots = document.querySelectorAll(".process-dot");
 
-    /* Immediately show hero elements on initial load */
-    window.addEventListener("load", () => {
-      document.querySelectorAll("#home .reveal").forEach(element => {
-        element.classList.add("visible");
+    let currentStep = -1;
+
+    function updateProcessStep(index) {
+      if (index === currentStep) return;
+      currentStep = index;
+
+      const data = processStepsData[index];
+
+      // Fade content out briefly for smooth text transition
+      titleEl.style.opacity = 0.2;
+      descEl.style.opacity = 0.2;
+      numEl.style.opacity = 0.2;
+
+      setTimeout(() => {
+        numEl.textContent = data.num;
+        phaseEl.textContent = data.phase;
+        titleEl.textContent = data.title;
+        descEl.textContent = data.desc;
+
+        titleEl.style.opacity = 1;
+        descEl.style.opacity = 1;
+        numEl.style.opacity = 1;
+      }, 150);
+
+      // Update progress bar fill & active dots
+      fillEl.style.width = `${((index + 1) / processStepsData.length) * 100}%`;
+
+      dots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    // Scroll progress handler
+    window.addEventListener("scroll", () => {
+      if (!processContainer) return;
+
+      const rect = processContainer.getBoundingClientRect();
+      const containerHeight = processContainer.offsetHeight - window.innerHeight;
+
+      if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+        const scrolled = Math.abs(rect.top);
+        const progress = Math.min(Math.max(scrolled / containerHeight, 0), 0.999);
+        const stepIndex = Math.floor(progress * processStepsData.length);
+        updateProcessStep(stepIndex);
+      } else if (rect.top > 0) {
+        updateProcessStep(0);
+      } else if (rect.bottom < window.innerHeight) {
+        updateProcessStep(processStepsData.length - 1);
+      }
+    });
+
+    // Dot click quick jump
+    dots.forEach(dot => {
+      dot.addEventListener("click", (e) => {
+        const targetStep = parseInt(e.target.getAttribute("data-step"));
+        const containerTop = window.pageYOffset + processContainer.getBoundingClientRect().top;
+        const containerHeight = processContainer.offsetHeight - window.innerHeight;
+        const targetScroll = containerTop + (targetStep / processStepsData.length) * containerHeight;
+
+        window.scrollTo({
+          top: targetScroll + 10,
+          behavior: "smooth"
+        });
       });
     });
   </script>
