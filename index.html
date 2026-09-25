@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alter — Event Styling & Decor</title>
+  
+  <!-- Google Fonts for Editorial Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #741c68;
+      --purple-dark: #53104d;
+      --purple-glow: #a82e98;
+      --cream: #efe7dd;
+      --cream-light: #f7eee6;
+      --cream-card: #f9f4ef;
+      --text-dark: #2a2228;
+      --text-muted: #534850;
+      --line-color: rgba(116, 28, 104, 0.25);
+      
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      background: var(--purple);
+      color: #ffffff;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .brand-logo-white {
+      height: 38px;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo-white svg {
+      height: 100%;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      position: relative;
+      opacity: 0.9;
+      transition: opacity 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: #ffffff;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .hero {
+      min-height: clamp(620px, 90vh, 900px);
+      padding-top: 72px;
+      display: grid;
+      grid-template-columns: 44% 56%;
+    }
+
+    .hero-content {
+      background-color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 10% 60px 12%;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      color: var(--purple);
+      font-size: clamp(48px, 5.2vw, 76px);
+      line-height: 0.98;
+      font-weight: 500;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      width: 250px;
+      height: 52px;
+      background: var(--purple);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--purple-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta span.arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-cta:hover span.arrow {
+      transform: translateX(4px);
+    }
+
+    .hero-art-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      overflow: hidden;
+      background: #3a0636;
+    }
+
+    #satinCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Overlay Floating Graphic 'A' on Satin background */
+    .hero-overlay-a {
+      position: absolute;
+      right: -8%;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 115%;
+      width: auto;
+      pointer-events: none;
+      filter: drop-shadow(-15px 25px 35px rgba(0, 0, 0, 0.45));
+    }
+
+    .about {
+      background-color: var(--cream);
+      padding: 90px 8% 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-heading {
+      font-family: var(--font-serif);
+      color: var(--purple);
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .about-text {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 520px;
+      font-weight: 400;
+    }
+
+    .about-quote {
+      font-family: var(--font-serif);
+      color: var(--purple);
+      font-size: clamp(32px, 3.2vw, 46px);
+      line-height: 1.15;
+      font-weight: 400;
+      padding-top: 10px;
+      max-width: 480px;
+    }
+
+    .values-strip {
+      background-color: var(--cream-light);
+      border-top: 1px solid var(--line-color);
+      border-bottom: 1px solid var(--line-color);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 60px 6%;
+    }
+
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 30px;
+      position: relative;
+    }
+
+    .value-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background-color: var(--line-color);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      color: var(--purple);
+    }
+
+    .value-title {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .value-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      max-width: 220px;
+    }
+
+    .services {
+      background-color: #e8ded2;
+      padding: 100px 8% 120px;
+    }
+
+    .services-title {
+      font-family: var(--font-serif);
+      color: var(--purple);
+      text-align: center;
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .service-card {
+      background: rgba(247, 241, 235, 0.85);
+      padding: 60px 36px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: #ffffff;
+      box-shadow: 0 15px 35px rgba(116, 28, 104, 0.08);
+    }
+
+    .service-card-title {
+      font-family: var(--font-serif);
+      color: var(--purple);
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .service-card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .feature-split {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      min-height: 380px;
+    }
+
+    .feature-image-col {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=85') center/cover no-repeat;
+      min-height: 340px;
+    }
+
+    .feature-image-col::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 15, 25, 0.12);
+    }
+
+    .feature-content-col {
+      background-color: var(--purple);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      padding: 60px 12%;
+    }
+
+    .feature-title {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 1.02;
+      font-weight: 400;
+    }
+
+    .footer {
+      background-color: var(--cream);
+      padding: 70px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .footer-brand svg {
+      height: 64px;
+      width: auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-content {
+        padding: 60px 8%;
+      }
+
+      .hero-art-container {
+        min-height: 380px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .values-strip {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .value-item:not(:last-child)::after {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-split {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--purple-dark);
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <a href="#home" class="brand-logo-white" aria-label="Alter Home">
+      <!-- White SVG Logo as per reference -->
+      <svg viewBox="0 0 250 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M42.2 12C31.5 12 21.2 20.8 13.8 31.4C6.4 42 1.5 54.8 1.5 63.2C1.5 73.1 7.2 78.5 16.5 78.5C26 78.5 35.8 70.8 44.2 59.8C51.5 50.2 55.6 39.8 55.6 31.8C55.6 19.5 49 12 42.2 12ZM35.4 62.5C28.8 70.2 21.2 74 16.2 74C12.2 74 9.5 70.8 9.5 64C9.5 57.5 13.8 45.8 20.2 36.8C26.5 27.8 34.2 20.8 40.5 20.8C45.2 20.8 47.8 24.5 47.8 31.5C47.8 38.8 43.2 48.8 35.4 62.5Z" fill="#FFFFFF"/>
+        <text x="72" y="52" font-family="'Playfair Display', serif" font-size="44" fill="#FFFFFF" font-weight="500">Alter</text>
+      </svg>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1 class="hero-title reveal">
+          Where<br>
+          Spaces<br>
+          Become<br>
+          Experiences
+        </h1>
+        <a href="#services" class="hero-cta reveal">
+          <span>Explore Our Collection</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="hero-art-container">
+        <!-- Interactive Animated Satin Silk Canvas Background -->
+        <canvas id="satinCanvas"></canvas>
+        
+        <!-- Large Floating Cream 'A' Logo Graphic -->
+        <svg class="hero-overlay-a" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 20C75 20 30 75 10 130C-10 185 -2 245 35 275C72 305 135 280 165 220C195 160 200 80 180 45C165 20 145 20 120 20ZM115 240C75 240 45 200 55 150C65 100 100 60 135 60C160 60 170 85 160 125C150 165 135 240 115 240Z" fill="#EFE7DD" opacity="0.95"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="reveal">
+        <h2 class="about-heading">About Us</h2>
+        <p class="about-text">
+          Alter Spaces was founded on the belief that decor is not decoration — it is atmosphere. 
+          For a decade we have shaped rooms, tents, gardens, and ballrooms into worlds that carry the weight 
+          of the occasion. Our studio brings together florists, set designers, and lighting artists who 
+          treat each event as a singular composition.
+        </p>
+      </div>
+
+      <div class="about-quote reveal">
+        Every space holds a memory before it's made.
+      </div>
+    </section>
+
+    <section class="values-strip" id="catalogue">
+      <!-- Premium Quality -->
+      <div class="value-item reveal">
+        <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M6 18L24 6L42 18L24 42L6 18Z"/>
+          <path d="M6 18H42"/>
+          <path d="M17 18L24 6L31 18"/>
+          <path d="M24 42L17 18"/>
+          <path d="M24 42L31 18"/>
+        </svg>
+        <h3 class="value-title">PREMIUM QUALITY</h3>
+        <p class="value-desc">Only the finest materials, crafted to last</p>
+      </div>
+
+      <!-- Curated Collection -->
+      <div class="value-item reveal">
+        <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="6" y="14" width="24" height="18" rx="1"/>
+          <path d="M30 20H38L42 25V32H30V20Z"/>
+          <circle cx="14" cy="35" r="3"/>
+          <circle cx="35" cy="35" r="3"/>
+        </svg>
+        <h3 class="value-title">CURATED COLLECTION</h3>
+        <p class="value-desc">Thoughtfully selected from global artisans.</p>
+      </div>
+
+      <!-- Expert Support -->
+      <div class="value-item reveal">
+        <svg class="value-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M24 6L29.5 17.5L42 19L33 27.5L35.5 40L24 34L12.5 40L15 27.5L6 19L18.5 17.5L24 6Z"/>
+        </svg>
+        <h3 class="value-title">EXPERT SUPPORT</h3>
+        <p class="value-desc">Personalized guidance for your support.</p>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <h2 class="services-title reveal">Our Services</h2>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <article class="service-card reveal">
+          <h3 class="service-card-title">Corporate Events</h3>
+          <p class="service-card-desc">
+            Brand launches, galas, conferences, and press dinners staged with editorial precision.
+          </p>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="service-card reveal">
+          <h3 class="service-card-title">Weddings</h3>
+          <p class="service-card-desc">
+            Ceremony arches, tablescapes, floral installations, and lighting design for the most personal day of your life.
+          </p>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="service-card reveal">
+          <h3 class="service-card-title">Private Celebrations</h3>
+          <p class="service-card-desc">
+            Birthdays, anniversaries, and intimate dinners — quietly extraordinary rooms for the people who matter.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="feature-split">
+      <div class="feature-image-col"></div>
+      <div class="feature-content-col">
+        <h2 class="feature-title reveal">
+          Where<br>
+          Spaces<br>
+          Become<br>
+          Experiences
+        </h2>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-brand">
+      <!-- Full Vector Brand Logo Main Purple -->
+      <svg viewBox="0 0 280 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M42.2 10C31.5 10 21.2 18.8 13.8 29.4C6.4 40 1.5 52.8 1.5 61.2C1.5 71.1 7.2 76.5 16.5 76.5C26 76.5 35.8 68.8 44.2 57.8C51.5 48.2 55.6 37.8 55.6 29.8C55.6 17.5 49 10 42.2 10ZM35.4 60.5C28.8 68.2 21.2 72 16.2 72C12.2 72 9.5 68.8 9.5 62C9.5 55.5 13.8 43.8 20.2 34.8C26.5 25.8 34.2 18.8 40.5 18.8C45.2 18.8 47.8 22.5 47.8 29.5C47.8 36.8 43.2 46.8 35.4 60.5Z" fill="#741C68"/>
+        <text x="70" y="50" font-family="'Playfair Display', serif" font-size="46" fill="#741C68" font-weight="500">Alter</text>
+        <text x="72" y="72" font-family="'Inter', sans-serif" font-size="12" fill="#741C68" font-weight="400" letter-spacing="0.5">Event Styling &amp; Decor</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth Mobile Toggle Navigation
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // Sticky Navbar shadow effect
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Intersection Observer for Smooth Scroll Reveal
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Canvas Animated Satin Backsplash Shader Effect
+    const canvas = document.getElementById("satinCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    let t = 0;
+    function drawSatin() {
+      t += 0.008;
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Base Satin Gradient
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#2d0429');
+      grad.addColorStop(0.35, '#741c68');
+      grad.addColorStop(0.7, '#a82e98');
+      grad.addColorStop(1, '#1b0219');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Render Silky Light Folds
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.opacity = 0.35;
+
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, h * 0.2);
+        
+        for (let x = 0; x <= w; x += 20) {
+          const y = Math.sin(x * 0.004 + t + i) * 80 + 
+                    Math.cos(x * 0.002 - t * 0.5) * 60 + 
+                    h * (0.3 + i * 0.25);
+          ctx.lineTo(x, y);
+        }
+
+        ctx.lineTo(w, h);
+        ctx.lineTo(0, h);
+        ctx.closePath();
+
+        const foldGrad = ctx.createLinearGradient(0, 0, w, h);
+        foldGrad.addColorStop(0, 'rgba(180, 75, 170, 0.25)');
+        foldGrad.addColorStop(0.5, 'rgba(235, 160, 225, 0.45)');
+        foldGrad.addColorStop(1, 'rgba(60, 10, 55, 0)');
+        ctx.fillStyle = foldGrad;
+        ctx.fill();
+      }
+
+      ctx.restore();
+      requestAnimationFrame(drawSatin);
+    }
+
+    window.onload = function() {
+      drawSatin();
+      // Ensure hero items are visible immediately on initial load
+      document.querySelectorAll("#home .reveal").forEach(el => el.classList.add("visible"));
+    };
+  </script>
+</body>
+</html>
